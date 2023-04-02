@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev
+  messages:
+    encoding: UTF-8
+    # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  10MB
+      # 设置总上传的文件大小
+      max-request-size:  20MB
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: iewjfoeowijjweoifjfewifjewjijefi,,>>??
+  # 令牌有效期（默认30分钟）  一秒为主
+  expireTime: 1800000
+#  mybatis 配置
+#mybatis:
+#  mapper-locations: classpath*:mapper/*/*.xml
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*/*.xml

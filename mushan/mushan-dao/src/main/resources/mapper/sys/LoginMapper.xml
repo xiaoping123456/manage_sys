@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mushan.dao.sys.LoginDao">
+
+    <resultMap id="userMap" type="com.mushan.common.pojo.sys.LonginUser">
+        <result column="id" property="id"></result>
+        <result column="user_name" property="userName"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+
+    <!--通过用户名查询用户信息-->
+ <select id="queryUserByUserName" resultMap="userMap">
+     select * from sys_user where  user_name = #{username}
+ </select>
+
+    <select id="getPower" resultType="string" parameterType="long">
+        SELECT DISTINCT sm.perms FROM sys_user as user JOIN sys_user_role as sur
+ON
+user.id = sur.user_id
+JOIN sys_role as sr
+ON
+sr.id = sur.role_id
+JOIN sys_role_menu as srm
+ON
+sr.id = srm.role_id
+JOIN sys_menu as sm
+ON
+sm.id = srm.menu_id
+WHERE user.id = #{uid} AND parent_id != 0  AND sm.perms is not NULL
+    </select>
+
+
+
+</mapper> 

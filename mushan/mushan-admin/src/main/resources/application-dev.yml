@@ -1,0 +1,45 @@
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    driver-calss-name: com.mysql.cj.jdbc.Drive
+    url: jdbc:mysql://127.0.0.1:3307/manage_common?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: xiaoping
+    hikari:
+      pool-name: DateHikariC
+      minimux-idle: 5
+      idel-timeout: 18000
+      maximum-pool-size: 10
+      auto-commit: true
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  #redis 配置
+  redis:
+    # 地址
+    host: localhost
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 0
+    # 密码
+    password:
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+jwt:
+  tokenHeader: Authorization
+  secret: eiorjeowijfioewjfdksjfoisd
+  expiration: 1800000
+  tokenHead: Bearer
+
